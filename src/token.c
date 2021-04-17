@@ -18,9 +18,11 @@ token_T* init_token(char* value , int type){
 static const char* token_type_to_str(int type){
     switch (type) {
         case TOKEN_ID: return "TOKEN_ID";
-     case TOKEN_R_CURLY: return "TOKEN_R_CURLY";                     //  {
+        case TOKEN_STRING: return "TOKEN_STRING";                    //  "
+        case TOKEN_CHARACTER: return "TOKEN_CHARACTER";              //  '
+        case TOKEN_R_CURLY: return "TOKEN_R_CURLY";                  //  {
         case TOKEN_L_CURLY: return "TOKEN_L_CURLY";                  //  }
-        case TOKEN_R_PARENTHESIS: return "TOKEN_R_PARENTHESIS";       //  (
+        case TOKEN_R_PARENTHESIS: return "TOKEN_R_PARENTHESIS";      //  (
         case TOKEN_L_PARENTHESIS: return "TOKEN_L_PARENTHESIS";      //  )
         case TOKEN_R_BRACKET: return "TOKEN_R_BRACKET";              //  [
         case TOKEN_L_BRACKET: return "TOKEN_L_BRACKET";              //  ]

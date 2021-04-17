@@ -1,8 +1,8 @@
 int _number_One1 = 8889 //نشانه پایانی فراموش شده ودر این فاز پروژه مهم نیست  ;
 /*
- * manhatan
- * */
-char myS[]=”sampleکلمه ٪٪٪Sample”;
+* manhatan*/
+
+char myS[]="sampleکلمه ٪٪٪Sample";
 //condition
 if(_number_One1 >900)
 {

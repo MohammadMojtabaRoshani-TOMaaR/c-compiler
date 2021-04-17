@@ -10,6 +10,8 @@ typedef  struct TOKEN_STRUCT{
         //  IDENTIFIER
         TOKEN_ID,               //      LEXER
         //  STRING
+        TOKEN_STRING,            //  "   LEXER
+        TOKEN_CHARACTER,         //  '   LEXER
         //  PUNCTUATION
         TOKEN_R_CURLY,          //  {   LEXER
         TOKEN_L_CURLY,          //  }   LEXER
