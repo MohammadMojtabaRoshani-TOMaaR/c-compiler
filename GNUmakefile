@@ -1,9 +1,9 @@
-exec = a.out
+exec = c_compiler.out
 sources = $(wildcard src/*.c)
 objects = $(sources:.c = .o)
 flags = -g -Wall -lm -ldl -fPIC -rdymnamic
 
-$(exec): $objects
+$(exec): $(objects)
 	gcc $(objects) $(flgs) -o $(exec)
 
 %.o: %.c include/%.h
@@ -11,8 +11,6 @@ $(exec): $objects
 
 clean:
 	-rm *.out
-	-rm *.o
-	-rm *.a
 
 lint:
 	clang-tidy src /*.c src/include/*.h

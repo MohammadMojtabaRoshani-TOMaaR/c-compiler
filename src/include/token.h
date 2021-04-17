@@ -84,8 +84,10 @@ typedef  struct TOKEN_STRUCT{
         //  Delimiter
         TOKEN_NEXT_LINE,        //  \n
         TOKEN_TAB,              //  \t
-
-
-    };
+        //  OTHERS
+        TOKEN_EOF               //  end of the file
+    } type;
 } token_T;
+token_T* init_token(char* value , int type);
+
 #endif //COMPILER_TOKEN_H
