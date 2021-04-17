@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+
 lexer_T* init_lexer(char* src){
     //  set located memory to zero and then allocate requested memory and set pointer to it
     lexer_T* lexer = calloc(1, sizeof(struct LEXER_STRUCT));
@@ -15,6 +16,7 @@ lexer_T* init_lexer(char* src){
     lexer->src_size = strlen(src);  //  not include null character
     lexer->c = src[lexer->i];       //  current char
     lexer->i = 0;                   //  index
+    lexer->str_flag = false;        //  string flag
 
     return  lexer;
 }
@@ -45,17 +47,40 @@ token_T* lexer_advance_current(lexer_T* lexer, int type){
 }
 
 void lexer_skip_whitespaces(lexer_T* lexer){
+
     //  check: Carriage Return || New Line || White Space || Tab Space
-    while ((lexer->c == 13 && lexer->c == 10) || lexer->c == ' ' || lexer->c == '\t'){
+    while ((lexer->c == 13 && lexer->c == 10 )|| lexer->c == 32 || lexer->c == '\n' || lexer->c == ' ' || lexer->c == '\t'){
         lexer_advance(lexer);
     }
+}
+
+void lexer_skip_comment(lexer_T* lexer){
+    if ((lexer->c == '/' && lexer_peek(lexer,1) == '/') || (lexer->c == '/' && lexer_peek(lexer,1) == '*')){
+        while (lexer->c != '\n' || (lexer->c == '*' && lexer_peek(lexer,1) == '/'))
+            lexer_advance(lexer);
+    }
+    lexer_skip_whitespaces(lexer);
+}
+
+void lexer_skip_other_language(lexer_T* lexer){
+    while (lexer->c < 0 || lexer->c > 127 ){
+        if (lexer->c == -39)
+            lexer_advance(lexer);
+        printf("ERROR[lexer]: OTHER LANGUAGE DETECTED\n");
+        lexer_advance(lexer);
+    }
+    lexer_skip_whitespaces(lexer);
+}
+
+void lexer_string_finder(lexer_T* lexer){
+
 }
 
 token_T* lexer_parse_id(lexer_T* lexer){
 
     char* value = calloc(1, sizeof(char));
     //  check:
-    while(isalpha(lexer->c)){
+    while(isalpha(lexer->c) || lexer->c == '_'){
         //  allocate memory and return newly allocated memory/null
         value = realloc(value, (strlen(value) + 2) * sizeof(char));
         strcat(value, (char[]){lexer->c,0});
@@ -76,14 +101,17 @@ token_T* lexer_parse_number(lexer_T* lexer){
     return init_token(value, TOKEN_INT);
 }
 
-
 token_T* lexer_next_token(lexer_T* lexer){
 
     while (lexer->c != '\0') {
 
         lexer_skip_whitespaces(lexer);
+        lexer_skip_comment(lexer);
+        lexer_skip_other_language(lexer);
+        lexer_string_finder(lexer);
+        lexer_string_finder(lexer);
 
-        if (isalpha(lexer->c))
+        if (isalpha(lexer->c) || lexer->c == '_')
             return lexer_advance_with(lexer, lexer_parse_id(lexer));
 
         if (isdigit(lexer->c))
@@ -182,7 +210,7 @@ token_T* lexer_next_token(lexer_T* lexer){
             }
                 break;
             case '\0': break;
-            default: printf("ERROR[lexer]: UNEXPECTED CHARACTER: `%c`\n", lexer->c); exit(1); break;
+            default: printf("ERROR[lexer]: UNEXPECTED CHARACTER: `%c`, ASCII :%d\n", lexer->c, (int) lexer->c); exit(1); break;
         }
     }
     return init_token(0, TOKEN_EOF);

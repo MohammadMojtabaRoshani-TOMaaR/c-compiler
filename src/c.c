@@ -9,9 +9,10 @@
 
 void c_compiler(char* src){
     lexer_T* lexer = init_lexer(src);
-    token_T* tok = 0;
-    while ((tok = lexer_next_token(lexer))->type != TOKEN_EOF){
-        printf("MESSAGE[token]: value = %s\ttype = %d \n", tok->value, tok->type);
+    token_T* token = 0;
+    short int token_counter = 1;
+    while ((token = lexer_next_token(lexer))->type != TOKEN_EOF){
+        printf("%d:\t%s\n", token_counter++, token_to_str(token));
     }
 }
 void c_compiler_file(const char* filename){

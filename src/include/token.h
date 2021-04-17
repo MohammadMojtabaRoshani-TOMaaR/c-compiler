@@ -91,5 +91,5 @@ typedef  struct TOKEN_STRUCT{
     } type;
 } token_T;
 token_T* init_token(char* value , int type);
-
+char* token_to_str(token_T* token);
 #endif //COMPILER_TOKEN_H
