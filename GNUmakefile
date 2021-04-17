@@ -9,7 +9,7 @@ $(exec): $(objects)
 %.o: %.c include/%.h
 	gcc &(flags) $< -o $@
 
-clean:
+clear:
 	-rm *.out
 
 lint:

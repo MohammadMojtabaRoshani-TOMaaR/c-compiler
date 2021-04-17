@@ -6,6 +6,8 @@ int main(int argc, char* argv[]) {
         printf("ERROR: THE INPUT FILE MUSE BE SPECIFIED\n");
         return 1;
     }
-    printf("MESSAGE: EXIT\n");
+
+    c_compiler_file(argv[1]);
+    printf("INFO[compiler]: EXIT\n");
     return 0;
 }

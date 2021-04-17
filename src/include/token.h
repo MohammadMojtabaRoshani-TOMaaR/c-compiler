@@ -8,43 +8,45 @@ typedef  struct TOKEN_STRUCT{
     char* value;
     enum {
         //  IDENTIFIER
-        TOKEN_ID,
+        TOKEN_ID,               //      LEXER
         //  STRING
         //  PUNCTUATION
-        TOKEN_R_CURLY,          //  {
-        TOKEN_L_CURLY,          //  }
-        TOKEN_R_PARENTHESIS,    //  (
-        TOKEN_E_PARENTHESIS,    //  )
-        TOKEN_R_BRACKET,        //  [
-        TOKEN_L_BRACKET,        //  ]
-        TOKEN_SEMICOLON,        //  ;
-        TOKEN_COMMA,            //  ,
-        TOKEN_DOT,              //  .
+        TOKEN_R_CURLY,          //  {   LEXER
+        TOKEN_L_CURLY,          //  }   LEXER
+        TOKEN_R_PARENTHESIS,    //  (   LEXER
+        TOKEN_L_PARENTHESIS,    //  )   LEXER
+        TOKEN_R_BRACKET,        //  [   LEXER
+        TOKEN_L_BRACKET,        //  ]   LEXER
+        TOKEN_SEMICOLON,        //  ;   LEXER
+        TOKEN_COMMA,            //  ,   LEXER
+        TOKEN_DOT,              //  .   LEXER
         //  OPERATORS
         //# ASSIGNMENTS
-        TOKEN_ASSIGN,           //  =
-        TOKEN_ADD_ASSIGN,       //  +=
-        TOKEN_SUB_ASSIGN,       //  =-
-        TOKEN_MUL_ASSIGN,       //  *=
-        TOKEN_DIV_ASSIGN,       //  /=
+        TOKEN_ASSIGN,           //  =   LEXER
+        TOKEN_ADD_ASSIGN,       //  +=  LEXER
+        TOKEN_SUB_ASSIGN,       //  =-  LEXER
+        TOKEN_MUL_ASSIGN,       //  *=  LEXER
+        TOKEN_DIV_ASSIGN,       //  /=  LEXER
+        TOKEN_MOD_ASSIGN,       //  %=  LEXER
         //# 4 MAIN OPERATORS
-        TOKEN_INC,              //  ++
-        TOKEN_DEC,              //  --
-        TOKEN_ADD,              //  +
-        TOKEN_SUB,              //  -
-        TOKEN_MUL,              //  *
-        TOKEN_DIV,              //  /
-        TOKEN_mod,              //  %
+        TOKEN_INC,              //  ++  LEXER
+        TOKEN_DEC,              //  --  LEXER
+        TOKEN_ADD,              //  +   LEXER
+        TOKEN_SUB,              //  -   LEXER
+        TOKEN_MUL,              //  *   LEXER
+        TOKEN_POWER,            //  **  LEXER
+        TOKEN_DIV,              //  /   LEXER
+        TOKEN_MOD,              //  %   LEXER
         //# CHECKERS AND BOOL OPERATORS
-        TOKEN_EQ,               //  ==
-        TOKEN_NE,               //  !=
-        TOKEN_LT,               //  <
-        TOKEN_GT,               //  >
-        TOKEN_LE,               //  <=
-        TOKEN_GE,               //  >=
-        TOKEN_NOT,              //  !
-        TOKEN_AND,              //  &&
-        TOKEN_OR,               //  ||
+        TOKEN_EQ,               //  ==  LEXER
+        TOKEN_NE,               //  !=  LEXER
+        TOKEN_LT,               //  <   LEXER
+        TOKEN_GT,               //  >   LEXER
+        TOKEN_LE,               //  <=  LEXER
+        TOKEN_GE,               //  >=  LEXER
+        TOKEN_NOT,              //  !   LEXER
+        TOKEN_AND,              //  &&  LEXER
+        TOKEN_OR,               //  ||  LEXER
         //  KEYWORD
         TOKEN_AUTO,             //  auto
         TOKEN_BREAK,            //  break
